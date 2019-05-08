@@ -1,0 +1,24 @@
+webapp:
+  build: .
+  command: node keystone
+  expose:
+   - "3000"
+  volumes:
+   - ./keystone-demo:/usr/app:Z
+  links:
+   - mongo
+  environment:
+   MONGOLAB_URI: mongodb://mongo:27017
+mongo:
+  image: mongo
+  ports:
+   - 27017:27017
+nginx:
+  image: nginx
+  ports:
+   - "80:80"
+  volumes:
+   - ./nginx.conf:/etc/nginx/conf.d/default.conf:Z
+  links:
+   - webapp
+
