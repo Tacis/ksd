@@ -3,9 +3,9 @@ chmod 600 /swapfile
 mkswap /swapfile
 swapon /swapfile
 echo "/swapfile   swap    swap    sw  0   0" >> /etc/fstab
-yum update - y
+yum -y update
 curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -
-yum install docker git gcc-c++ make nodejs krb5-devel
+yum -y install docker git gcc-c++ make nodejs krb5-devel
 groupadd docker
 usermod -aG docker $(whoami)
 systemctl enable docker
